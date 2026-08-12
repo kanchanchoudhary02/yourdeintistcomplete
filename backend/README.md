@@ -24,7 +24,7 @@ Node.js + Express + MongoDB backend for the dental clinic appointment system.
    npm run dev
    \`\`\`
 
-Server runs on `http://localhost:5000`
+Server runs on `https://yourdeintistcomplete.onrender.com`
 
 ## API Endpoints
 

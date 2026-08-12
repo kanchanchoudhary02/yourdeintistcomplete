@@ -5,7 +5,7 @@ import { services } from '../data/services.js'
 
 // Backend API endpoint
 const APPOINTMENTS_API_URL =
-  'http://localhost:5000/api/appointments'
+  "https://yourdeintistcomplete.onrender.com/api/appointments"
 
 const initialForm = {
   name: '',
