@@ -7,6 +7,8 @@ const createAppointment = async (req, res) => {
   try {
     const { name, phone, email, service, preferredDate, message } = req.body;
 
+    console.log('📝 Creating appointment...');
+
     const appointment = await Appointment.create({
       name,
       phone,
@@ -16,17 +18,24 @@ const createAppointment = async (req, res) => {
       message
     });
 
-    // Send email notification (doesn't block the response if it fails)
-    sendAppointmentEmail(appointment);
+    console.log('✅ Appointment saved:', appointment._id);
+
+    console.log('📧 Calling email service...');
+
+    const emailResult = await sendAppointmentEmail(appointment);
+
+    console.log('📧 Email service result:', emailResult);
 
     res.status(201).json({
       success: true,
       message: 'Appointment booked successfully',
-      data: appointment
+      data: appointment,
+      emailSent: emailResult.success
     });
 
   } catch (error) {
-    console.error('Error creating appointment:', error.message);
+    console.error('❌ Error creating appointment:', error);
+
     res.status(500).json({
       success: false,
       error: 'Something went wrong. Please try again later.'
